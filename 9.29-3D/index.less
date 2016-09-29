@@ -1,0 +1,57 @@
+@width:200px;
+@height:300px;
+#box{
+  width: (@width + 500px);
+  height: (@height + 300px);
+  border: 1px solid #3e1;
+  margin: 0 auto;
+  perspective: (@width + 500px);
+  perspective-origin: center;
+}
+#content{
+  position: relative;
+  width: (@width + 100px);
+  height: @height;
+  margin: 150px auto;
+  transition: all 8s ease;
+  transform-style: preserve-3D;
+}
+#box:hover #content{
+  transform: rotateY(360deg) rotateZ(360deg);
+}
+#content div{
+  position: absolute;
+  width: (@width + 100px);
+  height: @height;
+  left: 50%;
+  margin-left: -(@width + 100)/2;
+  font-weight: bold;
+  text-align: center;
+  line-height: @height;
+  font-size: 100px;
+  transform-style: preserve-3D;
+}
+#content div:nth-child(1){
+  background: rgba(30,30,100,.5);
+  transform: rotateX(0deg) translateZ(@height/2);
+}
+#content div:nth-child(2){
+  background: rgba(150,150,150,.5);
+  transform: rotateX(90deg) translateZ(@height/2);
+}
+#content div:nth-child(3){
+  background: rgba(170,170,170,.5);
+  transform: rotateX(180deg) translateZ(@height/2);
+}
+#content div:nth-child(4){
+  background: rgba(170,170,170,.5);
+  transform: rotateY(90deg) translateZ(@height/2);
+}
+#content div:nth-child(5){
+  background: rgba(180,180,180,.5);
+  transform: rotateX(-90deg) translateZ(@height/2);
+}
+#content div:nth-child(6){
+  background: rgba(180,180,180,.5);
+  transform: rotateY(-90deg) translateZ(@height/2);
+}

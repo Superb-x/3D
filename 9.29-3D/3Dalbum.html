@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: #000;
+        }
+        #box{
+            width: 245px;
+            height: 200px;
+            margin: 200px auto;
+            position: relative;
+            border: 1px solid #33ee11;
+            transform-style: preserve-3D;
+            transform: perspective(800px) rotateX(-20deg);
+            transition: all 1s ease;
+        }
+        #box div{
+            position: absolute;
+            transition: all .5s;
+        }
+        img{
+            -webkit-box-reflect: below 0 -webkit-linear-gradient(top,rgba(250,250,250,0),rgba(250,250,250,.0) 30%,rgba(250,250,250,0.3));
+            box-reflect: below 0 -webkit-linear-gradient(top,rgba(250,250,250,0),rgba(250,250,250,.0) 30%,rgba(250,250,250,0.3));
+            -webkit-user-select:none;
+        }
+        #box div:nth-child(1){
+            transform: rotateY(36deg) translateZ(380px);
+        }
+        #box div:nth-child(2){
+            transform: rotateY(72deg) translateZ(380px);
+        }
+        #box div:nth-child(3){
+            transform: rotateY(108deg) translateZ(380px);
+        }
+        #box div:nth-child(4){
+            transform: rotateY(144deg) translateZ(380px);
+        }
+        #box div:nth-child(5){
+            transform: rotateY(180deg) translateZ(380px);
+        }
+        #box div:nth-child(6){
+            transform: rotateY(216deg) translateZ(380px);
+        }
+        #box div:nth-child(7){
+            transform: rotateY(252deg) translateZ(380px);
+        }
+        #box div:nth-child(8){
+            transform: rotateY(288deg) translateZ(380px);
+        }
+        #box div:nth-child(9){
+             transform: rotateY(324deg) translateZ(380px);
+         }
+        #box div:nth-child(10){
+            transform: rotateY(360deg) translateZ(380px);
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <div><img src="img/1.jpg" alt=""></div>
+    <div><img src="img/2.jpg" alt=""></div>
+    <div><img src="img/3.jpg" alt=""></div>
+    <div><img src="img/4.jpg" alt=""></div>
+    <div><img src="img/5.jpg" alt=""></div>
+    <div><img src="img/6.jpg" alt=""></div>
+    <div><img src="img/7.jpg" alt=""></div>
+    <div><img src="img/8.jpg" alt=""></div>
+    <div><img src="img/9.jpg" alt=""></div>
+    <div><img src="img/10.jpg" alt=""></div>
+</div>
+
+
+<script>
+    var oBox = document.getElementById("box");
+    var divArr = oBox.getElementsByTagName("div");
+    var len= divArr.length;
+    var str = "";
+    var stepX = null;
+    var stepY = null;
+    var rotX = null;
+    var rotY = null;
+    document.onmousedown = function (ev) {
+        if (ev.preventDefault()){
+            ev.preventDefault();
+        }else{
+            ev.returnValue = false;
+        }
+        var mouseX = ev.clientX;
+        var mouseY = ev.clientY;
+
+        document.onmousemove = function (ev) {
+            var moveX = ev.clientX;
+            var moveY = ev.clientY;
+
+            stepX = moveX - mouseX;
+            stepY = moveY - mouseY;
+
+            rotY += stepX * 0.05;
+            rotX -= stepY * 0.05;
+
+            console.log(rotY);
+            console.log(rotX);
+            //str = "rotateY("+rotY+"deg) translateZ(380px) rotateX("+rotY+"deg);";
+            //cssSet(oBox,str);
+            oBox.style.transform = "perspective(800px) rotateX("+rotX+"deg) rotateY("+rotY+"deg)"
+        }
+
+
+    };
+    document.onmouseup = function () {
+        document.onmousemove = null;
+    };
+
+
+    function cssSet(obj,str) {
+        var arr = ["webkit","moz","ms","o",""];
+        for(var i=0;i<arr.length;i++){
+            obj.style[arr[i]+"transform"] = str;
+        }
+    }
+</script>
+</body>
+</html>
